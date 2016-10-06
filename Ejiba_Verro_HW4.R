@@ -41,13 +41,12 @@ for (j in 1:n){
 pwx = tx[1:n] #vector with powers of x
 pwy = ty[1:n] #vector with powers of y
 fun <- function(pwx, pwy) (x^pwx)*(y^pwy)
-rbind(pwx,pwy, fun(pwx,pwy))
+cbind(pwx,pwy, fun(pwx,pwy))
 #b create the following vector (2, 2^2/2, 2^3/3, ..., 2^25/25)
-initial = 2 #initial value to 2
 len = 25 #length of the vector 
 p = 1:len 
 f <- function(p) (2^p)/p
-rbind(p, f(p))
+cbind(p, f(p))
 
 #4 Calculate the sum of the following 2 function 
 #a i = 1:100 function -> (i^3 + 4i^2)
@@ -78,7 +77,19 @@ i = seq(2,length(yVec), 1) #creates a vector that selects elements at position 2
 j = seq(1,length(xVec)-1, 1) #creats a vector that selects 1,2,...,n-1 respectively
 newVec <- c(yVec[i] - xVec[j]) #A vector with (y2 - x1, ..., yn - xn-1)
 print(newVec)
+#b Create the vector (sin(y1)/ cos(x2), sin(y2)/cos(x3), ..., sin(yn-1)/cos(xn))
+k = seq(2,length(xVec), 1) #Create the x vector from 2 to len of x
+l = seq(1, length(yVec),1)
+trig <- c(sin(yVec[k])/cos(xVec[l]))
+print(trig)
+#c Create the vector (x_1+2x_2 - x_3, ..., x_n-2 + 2x_n-1 - x_n)
+f1 = seq(1,length(xVec),3) #length is not a multiple of 3 need to find other alternatives
+f2 = seq(2,length(xVec),3)
+f3 = seq(3,length(xVec),3)
+res <- c(xVec[f1]+2*xVec[f2]-xVec[f3])
 
-
+#d Calculate sum i = 1:-1 of the function (e^x * i+1) / (x_i + 10)
+#7 Still working on them
+#8 Not done
 
 
