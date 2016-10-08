@@ -96,27 +96,36 @@ s = sum(fun(i))/(xVec[i]+10)
 #a. Choose values in yVec that are >600 and #b The index position in yVec of the values that are >600
 
 for (j in 1:length(yVec)) {
-  if (yVec[j] > 600 ) {
-    print(j)
-    print(yVec[j])
-  }
+    if (yVec[j] > 600 ) {
+      index <- c(j)
+      values <- c(yVec[j])
+      valY <- cbind(index, values)
+      print(valY)
+    }
 }
-
+#c find the values where yVec = xVec at the same index 
 for (i in 1:length(xVec)){
   if(xVec[i] >600){
-    print(i)
-    print(xVec[i])
+    x_index <- c(i)
+    x_values <- c(xVec[i])
+    valX <- cbind(x_index, x_values)
+    print(valX)
+  }
+  if (index == x_index && x_values == values){
+    corr <- cbind(x_index, x_values)
+    print(corr)
   }
 }
-
-if (j == i && xVec[i] == yVec[j]){
-  print(xVec[i])
-  print(i)
-}
-ifelse{
-  return("None")
-}
-
+#d create the vector (|x_1 - mean(x)|^1/2, ..., |x_n - mean(x)|^1/2) 
+m_x <- mean(xVec)
+n = seq(1,length(xVec),1)
+sam <- c(sqrt(abs(xVec[n] - m_x)))
+print(sam)
+#e How many values in yVec are within 200 of the maximum value of the terms in yVec?
+print(length((max(yVec) - 200): max(yVec)))
+#f How many numbers in xVec are divisible by 2? 
+print(length(which(c(xVec[n] %% 2 == 0))))
+#g Sort numbers in the vector xVec in the order of increasing values in yVec
 #8 Not done
 
 
