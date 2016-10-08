@@ -89,7 +89,34 @@ f3 = seq(3,length(xVec),3)
 res <- c(xVec[f1]+2*xVec[f2]-xVec[f3])
 
 #d Calculate sum i = 1:-1 of the function (e^x * i+1) / (x_i + 10)
-#7 Still working on them
+i = 1: length(xVec)-1
+fun <- function(i) (exp(-xVec[i+1]))
+s = sum(fun(i))/(xVec[i]+10)
+#7 Use the xVec and yVec above and functions sort, order, mean, sqrt, sum, and abs
+#a. Choose values in yVec that are >600 and #b The index position in yVec of the values that are >600
+
+for (j in 1:length(yVec)) {
+  if (yVec[j] > 600 ) {
+    print(j)
+    print(yVec[j])
+  }
+}
+
+for (i in 1:length(xVec)){
+  if(xVec[i] >600){
+    print(i)
+    print(xVec[i])
+  }
+}
+
+if (j == i && xVec[i] == yVec[j]){
+  print(xVec[i])
+  print(i)
+}
+ifelse{
+  return("None")
+}
+
 #8 Not done
 
 
