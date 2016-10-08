@@ -27,9 +27,10 @@ x = c(0.1) #assigns value for x
 y = c(0.2) #assigns value for y
 #computes the power of eaach 0.1 
 n = 12 #length
-i = 1:n
+i = seq(1,n,1)
 tx <- c(i*3)
 #computes the power of each 0.2 
+ty <- c()
 for (j in 1:n){
   if (j == 1) {
     ty[1] = j
@@ -47,7 +48,6 @@ len = 25 #length of the vector
 p = 1:len 
 f <- function(p) (2^p)/p
 cbind(p, f(p))
-
 #4 Calculate the sum of the following 2 function 
 #a i = 1:100 function -> (i^3 + 4i^2)
 f <- function(i) (i^3 +4*i^2) #Define function
@@ -59,7 +59,6 @@ f2 <- function(i) ((2^i)/i + (3^i)/i^2)
 i = 1:25 
 total2 = sum(f2(i)) #Do summation
 print(total2)
-
 #5 Use the function paste to create the following character vectors of length 30:
 #a ("label 1", "label 2", ..., "label 30"). Note that there is a single space between label and the number following.
 labs <- paste(c("label"), 1:30, sep=" ") 
@@ -67,7 +66,6 @@ print(labs)
 #b ("fn1", "fn2", ..., "fn30"). In this case, there is no space between fn and the number following.
 fns <- paste(c("fn"), 1:30, sep="")
 print(fns)
-
 #6 Execute the following lines which create two vectors of random integersn wich are chosen with replacement from integers 0,1, ..., 999 both vectrs have length 250
 set.seed(50)
 xVec <- sample(0:999, 250, replace=T) #picks 250 random nnumbers between 1 and 999 
@@ -87,7 +85,6 @@ f1 = seq(1,length(xVec),3) #length is not a multiple of 3 need to find other alt
 f2 = seq(2,length(xVec),3)
 f3 = seq(3,length(xVec),3)
 res <- c(xVec[f1]+2*xVec[f2]-xVec[f3])
-
 #d Calculate sum i = 1:-1 of the function (e^x * i+1) / (x_i + 10)
 i = 1: length(xVec)-1
 fun <- function(i) (exp(-xVec[i+1]))
@@ -126,6 +123,21 @@ print(length((max(yVec) - 200): max(yVec)))
 #f How many numbers in xVec are divisible by 2? 
 print(length(which(c(xVec[n] %% 2 == 0))))
 #g Sort numbers in the vector xVec in the order of increasing values in yVec
-#8 Not done
+#Pick out the elements in yVec at the index 1,4,7,10, 13, ...)
+
+for (j in 1:length(yVec)){
+  if (j == 1) {
+    yv[1] = j
+  }
+  else {
+    yv <- c(yv[1],yv[-j]+3)
+  }
+}
+print(yVec[yv])
+#8 use of function cumprod
+odd <- seq(3,39,2)
+even <- seq(2,39,2)
+sum(c(1, cumprod(even/odd)))
+
 
 
