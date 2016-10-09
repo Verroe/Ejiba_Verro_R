@@ -48,6 +48,7 @@ len = 25 #length of the vector
 p = 1:len 
 f <- function(p) (2^p)/p
 cbind(p, f(p))
+
 #4 Calculate the sum of the following 2 function 
 #a i = 1:100 function -> (i^3 + 4i^2)
 f <- function(i) (i^3 +4*i^2) #Define function
@@ -59,6 +60,7 @@ f2 <- function(i) ((2^i)/i + (3^i)/i^2)
 i = 1:25 
 total2 = sum(f2(i)) #Do summation
 print(total2)
+
 #5 Use the function paste to create the following character vectors of length 30:
 #a ("label 1", "label 2", ..., "label 30"). Note that there is a single space between label and the number following.
 labs <- paste(c("label"), 1:30, sep=" ") 
@@ -66,6 +68,7 @@ print(labs)
 #b ("fn1", "fn2", ..., "fn30"). In this case, there is no space between fn and the number following.
 fns <- paste(c("fn"), 1:30, sep="")
 print(fns)
+
 #6 Execute the following lines which create two vectors of random integersn wich are chosen with replacement from integers 0,1, ..., 999 both vectrs have length 250
 set.seed(50)
 xVec <- sample(0:999, 250, replace=T) #picks 250 random nnumbers between 1 and 999 
@@ -81,38 +84,21 @@ l = seq(1, length(yVec),1)
 trig <- c(sin(yVec[k])/cos(xVec[l]))
 print(trig)
 #c Create the vector (x_1+2x_2 - x_3, ..., x_n-2 + 2x_n-1 - x_n)
-f1 = seq(1,length(xVec),3) #length is not a multiple of 3 need to find other alternatives
-f2 = seq(2,length(xVec),3)
-f3 = seq(3,length(xVec),3)
-res <- c(xVec[f1]+2*xVec[f2]-xVec[f3])
+res <- c(xVec[c(1:248)]+2*xVec[c(2:249)]-xVec[c(3:250)])
+res
 #d Calculate sum i = 1:-1 of the function (e^x * i+1) / (x_i + 10)
 i = 1: length(xVec)-1
 fun <- function(i) (exp(-xVec[i+1]))
 s = sum(fun(i))/(xVec[i]+10)
-#7 Use the xVec and yVec above and functions sort, order, mean, sqrt, sum, and abs
-#a. Choose values in yVec that are >600 and #b The index position in yVec of the values that are >600
 
-for (j in 1:length(yVec)) {
-    if (yVec[j] > 600 ) {
-      index <- c(j)
-      values <- c(yVec[j])
-      valY <- cbind(index, values)
-      print(valY)
-    }
-}
-#c find the values where yVec = xVec at the same index 
-for (i in 1:length(xVec)){
-  if(xVec[i] >600){
-    x_index <- c(i)
-    x_values <- c(xVec[i])
-    valX <- cbind(x_index, x_values)
-    print(valX)
-  }
-  if (index == x_index && x_values == values){
-    corr <- cbind(x_index, x_values)
-    print(corr)
-  }
-}
+#7 Use the xVec and yVec above and functions sort, order, mean, sqrt, sum, and abs
+#a. Choose values in yVec that are >600 and 
+values <- c(yVec>600)
+print(yVec[values])
+#b The index position in yVec of the values that are >600
+which(values)
+#c find the values where yVec = xVec at the same index
+print(xVec[values])
 #d create the vector (|x_1 - mean(x)|^1/2, ..., |x_n - mean(x)|^1/2) 
 m_x <- mean(xVec)
 n = seq(1,length(xVec),1)
@@ -123,8 +109,8 @@ print(length((max(yVec) - 200): max(yVec)))
 #f How many numbers in xVec are divisible by 2? 
 print(length(which(c(xVec[n] %% 2 == 0))))
 #g Sort numbers in the vector xVec in the order of increasing values in yVec
-#Pick out the elements in yVec at the index 1,4,7,10, 13, ...)
-
+xVec[order(yVec)]
+#h Pick out the elements in yVec at the index 1,4,7,10, 13, ...)
 for (j in 1:length(yVec)){
   if (j == 1) {
     yv[1] = j
@@ -134,6 +120,7 @@ for (j in 1:length(yVec)){
   }
 }
 print(yVec[yv])
+
 #8 use of function cumprod
 odd <- seq(3,39,2)
 even <- seq(2,39,2)
