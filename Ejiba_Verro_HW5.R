@@ -39,7 +39,55 @@ for (i in (1:ncol(df))){
   }
 }
 
-#7
-for (j in my){
-  print(which(is.na(j)))
+#7 still needs review
+for (j in (1:nrow(df))){
+  r <- df[j,]
+  misVal <- c(which(is.na(r)))
+  i = 1:length(misVal)
+  for (val in misVal) {
+    #print(val[i])
+    print(sum(val[i]))
+  } 
 }
+
+#8 
+f <- function(dataframe){
+  #This function accept any dataframe as a parameter and returns a dataframe that contains each pair of column names in the first column in a single string separated by a -, 
+  #and their corresponding Pearson correlation coefficient in the second column.
+  #Parameters: A dataframe
+  #Returns: A dataframe
+  
+  name_pairs <- cbind() 
+  correlations <- cbind()
+  
+  for (i in (1:ncol(dataframe))){
+    name1 = names(diamonds)[i]  #getting the first column name
+    
+    for (j in (i+1:ncol(dataframe))){  #only getting the columns after the first one
+      if  (is.na(names(diamonds)[j]) == FALSE){
+        if (names(diamonds)[j] != names(diamonds)[i]){
+          name2 =names(diamonds)[j]}   #getting the second column name
+        name_pairs <- rbind(name_pairs,paste(name1,name2,sep = "-", collapse = NULL))  #paste them in the "name1-name2" format
+        
+        if (is.numeric(dataframe[,name1]) == TRUE){  #only calculates the correlation for numeric columns
+          if (is.numeric(dataframe[,name2]) == TRUE){
+            correlations<- rbind(correlations, cor(dataframe[,name1],dataframe[,name2], method="pearson"))}#calculating the pearson correlations
+          else{
+            correlations<- rbind(correlations, NA)  #for non-numeric columns, the correletion is NA to avoid errors
+          }}
+        else{
+          correlations<- rbind(correlations, NA)
+        }
+        
+      }
+    }
+    
+  }
+  
+  output = data.frame(name_pairs,correlations) #combining two columns
+  return(output)
+}
+
+
+print(f(diamonds))
+
