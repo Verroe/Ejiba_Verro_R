@@ -1,5 +1,6 @@
 #Verro Ejiba
 #Homework 6
+#Group C
 #Get data from package
 install.packages("ggplot2")
 library("ggplot2")
